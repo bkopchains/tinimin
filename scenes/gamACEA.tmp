@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3 uid="uid://cmgtuk2vj11qm"]
+
+[ext_resource type="Script" path="res://scenes/manLine.gd" id="1_fvlc1"]
+[ext_resource type="PackedScene" uid="uid://ddc543u21iuty" path="res://scenes/player.tscn" id="1_sog5m"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_t0o78"]
+[ext_resource type="PackedScene" uid="uid://cpx1030dcwfkq" path="res://scenes/enemy.tscn" id="2_eemr4"]
+[ext_resource type="AudioStream" uid="uid://4etg0r0lamgp" path="res://assets/audio/bgm2.wav" id="4_p6yq7"]
+[ext_resource type="FontFile" uid="uid://cj6jf3gcaepsu" path="res://assets/PixelOperator8.ttf" id="6_in58f"]
+
+[sub_resource type="Gradient" id="Gradient_qnwlc"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.716099, 0.668843, 0.876974, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kjbd5"]
+gradient = SubResource("Gradient_qnwlc")
+
+[sub_resource type="Theme" id="Theme_1r85b"]
+default_font = ExtResource("6_in58f")
+default_font_size = 5
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_t0o78")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 0.5)
+scale = Vector2(5.09375, 2.92188)
+texture = SubResource("GradientTexture2D_kjbd5")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -109.0
+offset_top = -86.0
+offset_right = 109.0
+offset_bottom = -68.0
+theme = SubResource("Theme_1r85b")
+theme_override_colors/font_color = Color(0.133333, 0.12549, 0.203922, 0.258824)
+text = "save the babies"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line2D" type="Line2D" parent="."]
+texture_filter = 3
+width = 1.0
+default_color = Color(0.90135, 0.87757, 0.98994, 1)
+texture_mode = 1
+joint_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+sharp_limit = 1.0
+round_precision = 1
+script = ExtResource("1_fvlc1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Line2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("player") groups=["enemies"] instance=ExtResource("2_eemr4")]
+position = Vector2(102, -13)
+collision_layer = 3
+collision_mask = 3
+player = NodePath("../Player")
+
+[node name="Enemy2" parent="." node_paths=PackedStringArray("player") groups=["enemies"] instance=ExtResource("2_eemr4")]
+position = Vector2(-109, 65)
+collision_layer = 3
+collision_mask = 3
+player = NodePath("../Player")
+
+[node name="Enemy3" parent="." node_paths=PackedStringArray("player") groups=["enemies"] instance=ExtResource("2_eemr4")]
+position = Vector2(-1374, -1180)
+collision_layer = 3
+collision_mask = 3
+player = NodePath("../Player")
+
+[node name="Enemy4" parent="." node_paths=PackedStringArray("player") groups=["enemies"] instance=ExtResource("2_eemr4")]
+position = Vector2(894, 584)
+collision_layer = 3
+collision_mask = 3
+player = NodePath("../Player")
+
+[node name="Player" parent="." node_paths=PackedStringArray("line") instance=ExtResource("1_sog5m")]
+line = NodePath("../Line2D")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_p6yq7")
+volume_db = -6.624
+autoplay = true
+
+[node name="BabyTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="BabyTimer" to="." method="_on_baby_timer_timeout"]
