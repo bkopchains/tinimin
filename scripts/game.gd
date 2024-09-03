@@ -17,7 +17,6 @@ func make_baby() -> void:
 	
 	baby = baby_scene.instantiate();
 	baby.connect("baby_hit", kill_baby);
-	print(baby.get_instance_id());
 	get_tree().call_group("enemies", "baby_alert", str(baby.get_instance_id()), baby);
 	
 	var visible: Vector2 = get_viewport().get_visible_rect().size/2.25;

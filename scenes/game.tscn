@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://cmgtuk2vj11qm"]
 
-[ext_resource type="Script" path="res://scenes/manLine.gd" id="1_fvlc1"]
+[ext_resource type="Script" path="res://scripts/man_line.gd" id="1_fvlc1"]
 [ext_resource type="PackedScene" uid="uid://ddc543u21iuty" path="res://scenes/player.tscn" id="1_sog5m"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_t0o78"]
 [ext_resource type="PackedScene" uid="uid://cpx1030dcwfkq" path="res://scenes/enemy.tscn" id="2_eemr4"]
@@ -17,6 +17,33 @@ gradient = SubResource("Gradient_qnwlc")
 [sub_resource type="Theme" id="Theme_1r85b"]
 default_font = ExtResource("6_in58f")
 default_font_size = 5
+
+[sub_resource type="Animation" id="Animation_a8h3w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.133333, 0.12549, 0.203922, 0.258824)]
+}
 
 [sub_resource type="Animation" id="Animation_oc6m2"]
 resource_name = "add"
@@ -74,33 +101,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(0.133333, 0.12549, 0.203922, 0.258824), Color(1, 0, 0, 0.513726), Color(0.133333, 0.12549, 0.203922, 0.258824)]
-}
-
-[sub_resource type="Animation" id="Animation_a8h3w"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("..:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:theme_override_colors/font_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.133333, 0.12549, 0.203922, 0.258824)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ritml"]
